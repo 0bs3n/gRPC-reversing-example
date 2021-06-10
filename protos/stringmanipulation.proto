@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package stringmanipulation;
+
+// The string reversal service definition.
+service StringManipulation {
+    // Function invoked to send the request
+    rpc reverseString (StringRequest) returns (StringReply) {}
+
+    // Uppercase string
+    rpc uppercaseString (StringRequest) returns (StringReply) {}
+}
+
+message innerMessage {
+    int32 some_val = 1;
+    string some_string = 2;
+}
+
+enum testEnumeration {
+    ZERO = 0;
+    ONE = 1;
+    TWO = 2;
+    THREE = 3;
+    FOUR = 4;
+    FIVE = 5;
+}
+
+message complexMessage {
+    innerMessage some_message = 1;
+    testEnumeration innerEnum = 2;
+}
+
+// The request message containing the original string
+message StringRequest {
+    complexMessage cm = 1;
+    string original = 2;
+    int64 timestamp = 3;
+    bool testval = 4;
+    bool testval2 = 5;
+    bool testval3 = 6;
+}
+
+// The response message containing the reversed string
+message StringReply {
+    string result = 4;
+    int64 timestamp = 2; 
+    complexMessage cm = 3;
+}
